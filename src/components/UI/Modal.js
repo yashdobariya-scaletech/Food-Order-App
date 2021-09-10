@@ -13,7 +13,7 @@ const ModelOverlay = props => {
 }
 
 const portalElement = document.getElementById('overlays');
-
+                                        
 
 export default function Modal(props) {
     return (
