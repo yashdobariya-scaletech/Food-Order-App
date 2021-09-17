@@ -55,7 +55,11 @@ const defaultCartState = {
           items: updatedItems,
           totalAmount: updatedTotalAmount
         };
-      }
+    }
+
+    if (action.type === 'CLEAR'){
+      return defaultCartState
+    }
       
     return defaultCartState;
   };
@@ -67,20 +71,23 @@ export default function CardProvider(props) {
 
 
     const addItemToCartHandle = item => {
-    
         dispatchCartAction({type: 'ADD', item: item});
-
     };
 
     const removeItemToCartHandle = id => {
         dispatchCartAction({type: 'REMOVE', id: id});
     };
 
-    const cartContext ={
+    const clearCartHandle = () => {
+      dispatchCartAction({type:'CLEAR'})
+    }
+
+    const cartContext = {
         items: cartState.items,
         totalAmount: cartState.totalAmount,
         addItem: addItemToCartHandle,
-        removeItem: removeItemToCartHandle
+        removeItem: removeItemToCartHandle,
+        clearCart: clearCartHandle,
     }
 
     return (
